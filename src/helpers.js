@@ -1,8 +1,3 @@
-const errorObject = {
-  incomeTax: Number.NaN,
-  nITax: Number.NaN,
-};
-
 const taxBrackets = {
   taxBracket1: {
     lowerBracket: 0,
@@ -22,6 +17,11 @@ const taxBrackets = {
     incomeTaxRate: 0.4,
     nITaxRate: 0.02,
   },
+};
+
+const errorObject = {
+  incomeTax: Number.NaN,
+  nITax: Number.NaN,
 };
 
 const getBracketTax = (
@@ -61,6 +61,8 @@ const getTotalTax = (pay) => {
   let totalNITax = 0;
   let totalIncomeTax = 0;
 
+  if (Number.isNaN(Number.parseFloat(pay))) return errorObject;
+
   Object.values(taxBrackets).forEach((taxBracket) => {
     const isPayInTaxBracket = pay > taxBracket.lowerBracket;
 
@@ -74,4 +76,4 @@ const getTotalTax = (pay) => {
   return { totalNITax, totalIncomeTax };
 };
 
-export { taxBrackets, getBracketTax, getTotalTax, errorObject };
+export { taxBrackets, getTotalTax, getBracketTax, errorObject };
