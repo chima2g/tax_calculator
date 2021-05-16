@@ -79,4 +79,19 @@ describe("App", () => {
 
     expect(getByTestId(`net-pay`).textContent).toBe(`Net Pay = £0.00`);
   });
+
+  it("only numbers are accepted as input", () => {
+    const submitButton = getByTestId("submit-btn");
+    const inputField = getByTestId("pay-input");
+
+    fireEvent.change(inputField, {
+      target: {
+        value: "invalid number",
+      },
+    });
+
+    fireEvent.click(submitButton);
+
+    expect(getByTestId(`net-pay`).textContent).toBe(`Net Pay = £0.00`);
+  });
 });
