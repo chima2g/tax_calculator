@@ -1,4 +1,3 @@
-//TODO: Ensure both deal with invalid & negatuive number arguments, etc
 import {
   getBracketTax,
   getTotalTax,
