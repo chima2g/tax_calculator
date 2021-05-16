@@ -1,4 +1,4 @@
-import { getBracketTax, taxBrackets } from "./helpers";
+import { getBracketTax, taxBrackets, getTotalTax } from "./helpers";
 
 describe("getBracketTax", () => {
   const validCalculations = {
@@ -33,6 +33,38 @@ describe("getBracketTax", () => {
       expect(getBracketTax(calculation.pay, taxBrackets.taxBracket3)).toEqual(
         calculation.bracket3Tax
       );
+    });
+  });
+});
+
+describe("getTotalTax", () => {
+  const validCalculations = {
+    pay1: {
+      pay: 14000,
+      incomeTax: 0,
+      nITax: 0,
+      netPay: 1400,
+    },
+    pay2: {
+      pay: 20000,
+      incomeTax: 1000,
+      nITax: 600,
+      netPay: 18400,
+    },
+    pay3: {
+      pay: 55000,
+      incomeTax: 9000,
+      nITax: 4300,
+      netPay: 41700,
+    },
+  };
+
+  it("returns the correct total tax", () => {
+    Object.values(validCalculations).forEach((calculation) => {
+      expect(getTotalTax(calculation.pay)).toEqual({
+        totalNITax: calculation.nITax,
+        totalIncomeTax: calculation.incomeTax,
+      });
     });
   });
 });

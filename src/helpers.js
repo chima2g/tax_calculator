@@ -49,4 +49,21 @@ const getBracketTax = (
   return { incomeTax, nITax };
 };
 
-export { taxBrackets, getBracketTax, errorObject };
+const getTotalTax = (pay) => {
+  let totalNITax = 0;
+  let totalIncomeTax = 0;
+
+  Object.values(taxBrackets).forEach((taxBracket) => {
+    const isPayInTaxBracket = pay > taxBracket.lowerBracket;
+
+    if (isPayInTaxBracket) {
+      const { nITax, incomeTax } = getBracketTax(pay, taxBracket);
+      totalNITax += nITax;
+      totalIncomeTax += incomeTax;
+    }
+  });
+
+  return { totalNITax, totalIncomeTax };
+};
+
+export { taxBrackets, getBracketTax, getTotalTax };
