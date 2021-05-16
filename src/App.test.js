@@ -3,6 +3,12 @@ import App from "./App";
 
 let getByTestId;
 
+const formatter = new Intl.NumberFormat("en-UK", {
+  style: "currency",
+  currency: "GBP",
+  minimumFractionDigits: 2,
+});
+
 beforeEach(() => {
   const component = render(<App />);
   getByTestId = component.getByTestId;
@@ -45,17 +51,32 @@ describe("App", () => {
         fireEvent.click(submitButton);
 
         expect(getByTestId(`income-tax`).textContent).toBe(
-          `Total Income Tax = ${calculation.incomeTax}`
+          `Total Income Tax = ${formatter.format(calculation.incomeTax)}`
         );
 
         expect(getByTestId(`ni-tax`).textContent).toBe(
-          `Total NI Tax = ${calculation.nITax}`
+          `Total NI Tax = ${formatter.format(calculation.nITax)}`
         );
 
         expect(getByTestId(`net-pay`).textContent).toBe(
-          `Net Pay = ${calculation.netPay}`
+          `Net Pay = ${formatter.format(calculation.netPay)}`
         );
       });
     });
+  });
+
+  it("blank input is calculated as 0", () => {
+    const submitButton = getByTestId("submit-btn");
+    const inputField = getByTestId("pay-input");
+
+    fireEvent.change(inputField, {
+      target: {
+        value: "",
+      },
+    });
+
+    fireEvent.click(submitButton);
+
+    expect(getByTestId(`net-pay`).textContent).toBe(`Net Pay = £0.00`);
   });
 });
