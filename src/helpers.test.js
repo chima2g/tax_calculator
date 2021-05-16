@@ -1,7 +1,8 @@
+//TODO: Ensure both deal with invalid & negatuive number arguments, etc
 import {
   getBracketTax,
-  taxBrackets,
   getTotalTax,
+  taxBrackets,
   errorObject,
 } from "./helpers";
 
@@ -100,5 +101,9 @@ describe("getTotalTax", () => {
         totalIncomeTax: calculation.incomeTax,
       });
     });
+  });
+
+  it("returns an error object given an invalid pay", () => {
+    expect(getTotalTax("invalid number")).toEqual(errorObject);
   });
 });
