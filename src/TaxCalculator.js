@@ -35,9 +35,7 @@ const TaxCalculator = () => {
           placeholder="enter your pay"
           type="number"
           step="any"
-          name={"pay"}
           data-testid={"pay-input"}
-          id="pay-input"
           onChange={handleChange}
           required={true}
         ></input>
