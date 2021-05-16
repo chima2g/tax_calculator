@@ -46,6 +46,29 @@ describe("getBracketTax", () => {
       errorObject
     );
   });
+
+  it("returns an error object when given an invalid tax bracket value", () => {
+    expect(
+      getBracketTax(1000, {
+        ...taxBrackets.taxBracket1,
+        lowerBracket: "invalid number",
+      })
+    ).toEqual(errorObject);
+
+    expect(
+      getBracketTax(1000, {
+        ...taxBrackets.taxBracket1,
+        incomeTaxRate: "invalid number",
+      })
+    ).toEqual(errorObject);
+
+    expect(
+      getBracketTax(1000, {
+        ...taxBrackets.taxBracket1,
+        nITaxRate: "invalid number",
+      })
+    ).toEqual(errorObject);
+  });
 });
 
 describe("getTotalTax", () => {
