@@ -33,6 +33,14 @@ const getBracketTax = (
   let isPayUnderLowerTaxBracket = pay < lowerBracket;
   let isPayOverUpperTaxBracket = pay > upperBracket;
 
+  if (
+    Number.isNaN(Number.parseFloat(pay)) ||
+    Number.isNaN(Number.parseFloat(lowerBracket)) ||
+    Number.isNaN(Number.parseFloat(nITaxRate)) ||
+    Number.isNaN(Number.parseFloat(incomeTaxRate))
+  )
+    return errorObject;
+
   if (isPayUnderLowerTaxBracket) {
     amountToTax = 0;
   } else if (isHighestTaxBracket) {
@@ -66,4 +74,4 @@ const getTotalTax = (pay) => {
   return { totalNITax, totalIncomeTax };
 };
 
-export { taxBrackets, getBracketTax, getTotalTax };
+export { taxBrackets, getBracketTax, getTotalTax, errorObject };

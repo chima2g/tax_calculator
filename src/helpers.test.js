@@ -1,4 +1,9 @@
-import { getBracketTax, taxBrackets, getTotalTax } from "./helpers";
+import {
+  getBracketTax,
+  taxBrackets,
+  getTotalTax,
+  errorObject,
+} from "./helpers";
 
 describe("getBracketTax", () => {
   const validCalculations = {
@@ -34,6 +39,12 @@ describe("getBracketTax", () => {
         calculation.bracket3Tax
       );
     });
+  });
+
+  it("returns an error object when given an invalid pay", () => {
+    expect(getBracketTax("invalid number", taxBrackets.taxBracket1)).toEqual(
+      errorObject
+    );
   });
 });
 
