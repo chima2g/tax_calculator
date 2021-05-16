@@ -27,7 +27,8 @@ const TaxCalculator = () => {
   };
 
   return (
-    <div>
+    <main>
+      <h2>Tax Calculator</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="pay-input">Pay:</label>
         <input
@@ -41,17 +42,15 @@ const TaxCalculator = () => {
           required={true}
         ></input>
         <button data-testid={"submit-btn"}>Submit</button>
-        <ul>
-          <li data-testid={"income-tax"}>
-            Total Income Tax = {formatter.format(incomeTax)}
-          </li>
-          <li data-testid={"ni-tax"}>
-            Total NI Tax = {formatter.format(nITax)}
-          </li>
-          <li data-testid={"net-pay"}>Net Pay = {formatter.format(netPay)}</li>
-        </ul>
       </form>
-    </div>
+      <ul>
+        <li data-testid={"income-tax"}>
+          Total Income Tax = {formatter.format(incomeTax)}
+        </li>
+        <li data-testid={"ni-tax"}>Total NI Tax = {formatter.format(nITax)}</li>
+        <li data-testid={"net-pay"}>Net Pay = {formatter.format(netPay)}</li>
+      </ul>
+    </main>
   );
 };
 
