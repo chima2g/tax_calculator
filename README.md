@@ -2,8 +2,6 @@
 
 [Deployed version](https://tax-calculator-chima2g.herokuapp.com/)
 
-https://tax-calculator-chima2g.herokuapp.com/
-
 ## Assumptions
 
 Negative values are allowed
