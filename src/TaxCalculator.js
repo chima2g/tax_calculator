@@ -31,10 +31,14 @@ const TaxCalculator = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="pay-input">Pay:</label>
         <input
-          data-testid={"pay-input"}
+          placeholder="enter your pay"
           type="number"
           step="any"
+          name={"pay"}
+          data-testid={"pay-input"}
+          id="pay-input"
           onChange={handleChange}
+          required={true}
         ></input>
         <button data-testid={"submit-btn"}>Submit</button>
         <ul>
