@@ -3,7 +3,7 @@ import TaxCalculator from "./TaxCalculator";
 function App() {
   return (
     <div className="App">
-      <TaxCalculator></TaxCalculator>
+      <TaxCalculator />
     </div>
   );
 }
